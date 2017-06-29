@@ -1,0 +1,829 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, div, span, i {
+    font-family: 'Lato', sans-serif;
+    color: rgb(77, 45, 121);
+}
+
+i {
+    font-size: 1.4rem;
+
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 3rem;
+    color: rgb(77, 45, 121);
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    color: rgb(77, 45, 121);
+}
+
+h4, p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: rgb(77, 45, 121);
+}
+
+a,
+a:focus, a:active, a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.top-bar {
+    background: linear-gradient(127deg, rgba(112, 49, 111, 1), white 75%);
+}
+
+.top-bar h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.7rem;
+    color: rgb(77, 45, 121);
+    padding-bottom: 3px;
+}
+
+.top-bar h6 {
+    padding-top: 8px;
+}
+
+.jumbotron p {
+    font-style: italic;
+    font-size: 1rem;
+    color: black;
+}
+
+.form-search input {
+    background-color: rgb(214, 204, 214);
+    margin: 0 auto;
+    padding: 7px;
+    font-size: 16px;
+    width: 200px;
+    text-align: center;
+    color: white;
+}
+
+#btn-salir {
+    color: gray !important;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.logo-container {
+    padding-left: 5%;
+    height: 155px;
+}
+
+.logo-container img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#menu-der {
+    /*position: relative;
+    top: 50%;
+    transform: translateY(25%);*/
+}
+
+#cursos-realizados h2 {
+    font-family: 'Lato', sans-serif;
+    color: rgb(77, 45, 121);
+    font-weight: 300;
+    font-size: 2rem;
+}
+
+#cursos-realizados h1 {
+    font-family: 'Lato', sans-serif;
+    color: rgb(77, 45, 121);
+    font-weight: 300;
+    font-size: 6.2rem;
+    margin-bottom: 0;
+    line-height: 0.6em;
+    padding-bottom: 25px;
+}
+
+.menu {
+    min-height: 620px;
+    /*padding-left: 5%;*/
+}
+
+#prueba {
+
+}
+
+.menu-superior .active {
+    border-top: 5px solid #FFF;
+}
+
+.menu-superior a {
+    color: white !important;
+    border-top: 5px solid rgba(0, 0, 0, 0);
+    padding: 1.8em 0 0 0;
+    margin-left: 3em;
+    height: 100px;
+}
+
+.menu h2 {
+    /*position: absolute;*/
+    /*bottom: 0.5em;*/
+    /*right: 0.5em;*/
+    font-family: 'Lato', sans-serif;
+    color: white;
+    font-weight: 300;
+    font-size: 4rem;
+}
+
+.form-search input::-webkit-input-placeholder {
+    color: white;
+}
+
+.form-search input::-moz-placeholder {
+    color: white;
+}
+
+.jumbotron h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    color: rgb(77, 45, 121);
+    margin-bottom: 1em;
+}
+
+.jumbotron {
+    margin-bottom: 0;
+}
+
+#ver-cursos {
+    padding: 2rem 1rem;
+    background: linear-gradient(127deg, rgba(190, 178, 207, 1), white 190%);
+}
+
+#ver-cursos h1 {
+    margin: 0;
+    padding: 0;
+}
+
+#ver-cursos a {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 1em;
+}
+
+.nounderline:hover,
+.nounderline:active,
+.nounderline::before {
+    text-decoration: none
+}
+
+div.vertical-line{
+    width: 2px; /* Line width */
+    background-color: #7d7d99; /* Line color */
+    height: 100%; /* Override in-line if you want specific height. */
+    float: left; /* Causes the line to float to left of content.
+        You can instead use position:absolute or display:inline-block
+        if this fits better with your design */
+}
+
+#mas-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 55px;
+    height: 110px;
+    border-radius: 300px 0 0 300px;
+    background-color: rgb(77, 45, 121);
+}
+
+#mas-info p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    width: 120px;
+    text-align: center;
+    position: relative;
+    right: 50%;
+    top: 38%;
+    transform: rotate(-90deg);
+    color: white;
+    margin-bottom: 0;
+}
+
+#jumbo-rendimiento {
+    padding-right: 1em;
+}
+
+.curso {
+    margin: 0 10px 10px 10px;
+}
+
+.curso .img-curso {
+    background: url(../img/thumb1.png) center no-repeat;
+    background-size: cover;
+}
+
+.curso .nopadding {
+    padding: 0 !important;
+}
+
+#img-curso {
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 38%;
+    left: 40%;
+}
+
+.curso .card {
+    background-color: rgb(150, 129, 176);
+    border-radius: 0;
+}
+
+.curso p {
+    font-size: 0.8rem;
+}
+
+.curso .card-footer {
+    background-color: rgb(94, 29, 176);
+}
+
+.card-group .card:hover {
+    cursor: pointer;
+}
+
+#indice-circulos {
+    background: linear-gradient(180deg, lightgray, white 20%);
+    padding-top: 4.5em;
+    padding-bottom: 0.5em;
+}
+
+#indice-circulos .card {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+#indice-circulos h4 {
+    color: rgb(141,10,119);
+    font-size: 2.4rem;
+}
+
+#indice-circulos p {
+    font-size: 0.9rem;
+}
+
+#mas-cursos {
+    width: 110px;
+    height: 55px;
+    border-radius: 300px 300px 0 0;
+    background-color: rgb(196, 185, 199);
+    margin: 0 auto;
+}
+
+#mas-cursos p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-align: center;
+    color: white;
+    padding-top: 15px;
+    margin: 0 auto;
+    width: 70px;
+    line-height: 1;
+}
+
+.agenda {
+    background: linear-gradient(270deg, rgba(112, 49, 111, 1), white 75%);
+}
+
+.agenda .card {
+    background-color: transparent;
+    border: none;
+}
+
+.agenda p {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 0.8rem;
+    color: black;
+}
+
+.container-calendario {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.calendario-arrow {
+    cursor: pointer;
+}
+
+.calendario div {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    color: darkgray;
+}
+
+.calendario h2 {
+    font-family: Quicksand, sans-serif;
+    color: darkgray;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+}
+
+.calendario .event {
+    background-color: rgb(173, 216, 230);
+    color: black;
+    cursor: pointer;
+}
+
+.calendario {
+    max-width: 460px;
+}
+
+.calendario-mes {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: white;
+    background-color: lightgray;
+}
+
+#contact-form {
+    background-color: rgb(150, 129, 176);
+}
+
+#contact-form .form-group input,
+#contact-form .form-group textarea {
+    color: white;
+    background: transparent;
+    border: whitesmoke 2px solid;
+    resize: none;
+}
+
+#contact-form .form-group input::-webkit-input-placeholder,
+#contact-form .form-group textarea::-webkit-input-placeholder {
+    color: white !important;
+}
+
+#contact-form .form-group input:-moz-placeholder,
+#contact-form .form-group textarea:-moz-placeholder {
+    color: white !important;
+}
+
+#contact-form .form-group input::-moz-placeholder,
+#contact-form .form-group textarea::-moz-placeholder {
+    color: white !important;
+}
+
+#contact-form .form-group input:-ms-input-placeholder,
+#contact-form .form-group textarea:-ms-input-placeholder {
+    color: white !important;
+}
+
+#contact-form h1 {
+    font-size: 2.2rem;
+    color: white;
+    font-weight: 300;
+}
+
+#contact-form form button {
+    background-color: lightgray;
+
+    border-color: lightgray;
+    color: rgb(150, 129, 176);
+}
+
+#acerca-de {
+    background: url("../img/foto-acerca-de.png");
+    -webkit-background-size: cover;
+    background-size: cover;
+    min-height: 300px;
+}
+
+#acerca-de h2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: white;
+    font-size: 1.1rem
+}
+
+#contact-form h4 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: white;
+}
+
+#articulos {
+    background: linear-gradient(180deg, rgba(127, 106, 136, 0.2), transparent);
+}
+
+.links-filtros a,
+.links-filtros span {
+    color: rgb(94, 19, 116);
+}
+
+.links-filtros .active {
+    font-weight: 700;
+}
+
+.links-filtros a:hover,
+.links-filtros a:visited,
+.links-filtros a:focus {
+    color: rgb(94, 19, 116);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+#categorias-productos button {
+    background-color: lightgray;
+    border-color: lightgray;
+    color: rgb(150, 129, 176);
+}
+
+#categorias-productos h1 {
+    font-size: 2rem;
+    word-wrap: break-word;
+    width: 250px;
+}
+
+#listado-productos button {
+    background-color: rgba(150, 129, 176, 0.7);
+    border: none;
+    color: white;
+}
+
+#listado-productos h1 {
+    font-size: 2rem;
+}
+
+.lista-reuniones {
+    background-color: rgba(150, 129, 176, 1);
+    min-height: 43px;
+}
+
+.lista-reuniones a {
+    color: white !important;
+    background-color: transparent;
+}
+
+.reuniones-ciclo img {
+    height: 20px;
+    width: auto;
+}
+
+.cuerpo-articulo img {
+    width: 20px;
+    height: auto;
+}
+
+.cuerpo-articulo button {
+    background-color: rgba(150, 129, 176, 1);
+    border-color: rgba(150, 129, 176, 1);
+    border-radius: 0;
+}
+
+.cuerpo-articulo button:hover {
+    background-color: rgba(94, 29, 116, 1);
+    border-color: rgba(94, 29, 116, 1);
+}
+
+.cuerpo-articulo h5 {
+    font-weight: 300;
+    color: rgba(94, 29, 116, 1);
+    font-size: 2.5rem;
+}
+
+.articulo-header span {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: black;
+}
+
+.articulo-header img {
+    width: 25px;
+}
+
+.articulo-footer {
+    color: rgba(150, 129, 176, 1);
+}
+
+.cuerpo-articulo p {
+    font-size: 1rem;
+}
+
+.producto-popup h1 {
+    color: white;
+    font-size: 3.5vw;
+}
+
+.producto-popup h2 {
+    color: white;
+    font-size: 1.5vw;
+}
+
+.producto-popup h3 {
+    color: rgba(94, 29, 116, 1);
+    font-weight: 100;
+    font-size: 2rem;
+}
+
+.light-font {
+    font-weight: 300;
+}
+
+.regular-font {
+    font-weight: 400;
+}
+
+.thin-font {
+    font-weight: 100;
+}
+
+
+#left-wrap-bottom-circle {
+    shape-outside: polygon(14% 58%, 25% 70%, 41% 82%, 57% 89%, 74% 93%, 100% 100%, 0 100%, 0 0, 2% 26%, 7% 41%);
+    -webkit-shape-outside: polygon(14% 58%, 25% 70%, 41% 82%, 57% 89%, 74% 93%, 100% 100%, 0 100%, 0 0, 2% 26%, 7% 41%);
+    float: left;
+    -webkit-clip-path: polygon(14% 58%, 25% 70%, 41% 82%, 57% 89%, 74% 93%, 100% 100%, 0 100%, 0 0, 2% 26%, 7% 41%);
+    clip-path: polygon(14% 58%, 25% 70%, 41% 82%, 57% 89%, 74% 93%, 100% 100%, 0 100%, 0 0, 2% 26%, 7% 41%);
+    width: 110%;
+    height: 38ex;
+    background-color: transparent;
+}
+
+#top-circle h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 2.4rem;
+    padding-top: 10.9rem;
+    padding-right: 14.9rem;
+    padding-left: 4rem;
+    color: white;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+#bottom-circle p {
+    font-size: 0.8rem;
+}
+
+#descripcion-producto p {
+    color: black;
+    font-size: 1rem;
+}
+
+#descripcion-producto h1 {
+    font-size: 2rem;
+}
+
+#saber-mas {
+    width: 110px;
+    height: 55px;
+    border-radius: 300px 300px 0 0;
+    background: rgba(94, 29, 116, 0.9);
+    margin: 0 0 0 auto;
+}
+
+#saber-mas p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-align: center;
+    color: white !important;
+    padding-top: 15px;
+    margin: 0 auto;
+    width: 70px;
+    line-height: 1;
+}
+
+@media only screen and (max-width: 767px) {
+
+
+
+    #left-wrap-bottom-circle {
+        shape-outside: none;
+        -webkit-shape-outside: none;
+        display: none;
+    }
+
+
+    .producto-popup h2 {
+        color: white;
+        font-size: 3vw;
+    }
+
+    .lista-reuniones .active {
+        background-color: rgba(94, 29, 116, 1) !important;
+    }
+
+    #listado-productos h1 {
+        font-size: 1.2rem;
+    }
+
+    .img-articulo {
+        text-align: center !important;
+    }
+
+    #cursos-realizados h1 {
+        font-size: 4.2rem;
+    }
+
+    #menu-der {
+        transform: translateY(0%);
+    }
+
+    .menu-superior {
+        padding-left: 0;
+    }
+
+    .menu-superior a {
+        margin-left: 0;
+    }
+
+    .menu h2 {
+        font-size: 2.3rem;
+    }
+
+    #jumbo-rendimiento {
+        padding-right: 1rem;
+    }
+
+    #mas-info {
+        top: -130px;
+    }
+
+    #indice-circulos .card-title {
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+    }
+
+    .agenda {
+        background: linear-gradient(270deg, rgba(112, 49, 111, 1), white 75%);
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    #img-popup {
+        margin-top: 0 !important;
+    }
+
+    .calendario {
+        min-width: 300px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .cuadro-busqueda {
+        margin: 0 auto;
+    }
+
+    #left-wrap-bottom-circle {
+        display: none;
+    }
+
+    #top-circle h1 {
+        padding: 0.5em;
+    }
+
+    #img-popup {
+        margin-top: 0 !important;
+    }
+}
+
+#top-circle {
+    background: rgba(94, 29, 116, 0.7);
+}
+
+#bottom-circle {
+    background: rgba(240, 240, 240, 0.7);
+}
+
+
+@media only screen and (min-width: 992px) {
+
+    #circle {
+        float: right;
+        position: relative;
+        left: 140px;
+        bottom: 110px;
+        min-width: 620px;
+        min-height: 620px;
+    }
+
+    #top-circle {
+        position: relative;
+        margin-left: 4px;
+
+        height: 310px;
+        width: 625px;
+
+        border-radius: 620px 620px 0 0;
+        -moz-border-radius: 620px 620px 0 0;
+        -webkit-border-radius: 620px 620px 0 0;
+    }
+
+    #bottom-circle {
+        position: relative;
+        margin-top: 0.5rem;
+        overflow: hidden;
+
+        /*margin: 0.5rem auto 0 100px;*/
+
+        height: 310px;
+        width: 625px;
+
+        border-radius: 0 0 620px 620px;
+        -moz-border-radius: 0 0 620px 620px;
+        -webkit-border-radius: 0 0 620px 620px;
+    }
+
+
+}
+
+
+@media only screen and (min-width: 767px) {
+
+
+
+    .lista-reuniones .active {
+        background-color: transparent !important;
+        border-bottom: 47px solid rgba(94, 29, 116, 1) !important;
+        border-top-color: transparent !important;
+        border-left-color: transparent !important;
+        border-right: 20px solid transparent !important;
+        height: 0 !important;
+        color: white !important;
+        position: relative;
+        top: -23px;
+        margin-bottom: -36px;
+        line-height: 60px;
+    }
+}
+
+
+@-webkit-keyframes ticker {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+@keyframes ticker {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.ticker-wrap {
+    overflow: hidden;
+    width: 100%;
+}
+
+.ticker {
+    display: inline-block;
+    white-space: nowrap;
+    min-width: 100%;
+
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-name: ticker;
+    animation-name: ticker;
+    -webkit-animation-duration: 15s;
+    animation-duration: 15s;
+}
+
+.ticker__item {
+
+    display: inline-block;
+    padding: 0 2rem;
+    font-size: 2rem;
+    color: rgb(77, 45, 121);
+    font-weight: 300;
+ }
