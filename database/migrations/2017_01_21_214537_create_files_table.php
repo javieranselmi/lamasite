@@ -10,9 +10,8 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function(Blueprint $table) {
             $table->increments('id');
-            $table->string("file_name_original");
             $table->string("file_name");
-            $table->string("mime");
+            $table->string("mime")->nullable();
             // Schema declaration
             // Constraints declaration
             $table->timestamps();
