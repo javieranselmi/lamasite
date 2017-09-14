@@ -65,7 +65,7 @@ class ProductCategoriesController extends AdminController
         $validator = Validator::make($request->all(), [
             'category_name' => 'required',
             'category_description' => 'required',
-            'category_photo' => 'sometimes|required|image'
+            'category_photo' => 'required'
         ]);
 
         if($validator->fails()){
@@ -74,22 +74,18 @@ class ProductCategoriesController extends AdminController
 
         $CategoryName = Input::get('category_name');
         $CategoryDescription = Input::get('category_description');
-        $FileUpload = $request->file('category_photo');
+        $FileUpload = Input::get('category_photo');
 
         $FileToDelete = null;
         if($FileUpload != null){
-            $ProductCategoryImage = Image::make($FileUpload)->resize(300,204)->stream();
-            $File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], $ProductCategoryImage->__toString());
-            $FileToDelete = $ProductCategory->file;
+            //$ProductCategoryImage = Image::make($FileUpload)->resize(300,204)->stream();
+            $File = \App\File::create(['file_name' => $FileUpload ]);
             $ProductCategory->file()->associate($File);
-
         }
 
         $ProductCategory->name = $CategoryName;
         $ProductCategory->description = $CategoryDescription;
         $ProductCategory->save();
-        if(!is_null($FileToDelete))
-            $FileToDelete->delete();
 
         return redirect()->route('admin_product_categories', ['status' => 'success','message' => 'Categoria Editada']);
     }
@@ -98,7 +94,7 @@ class ProductCategoriesController extends AdminController
         $validator = Validator::make($request->all(), [
             'category_name' => 'required',
             'category_description' => 'required',
-            'category_photo' => 'required|image'
+            'category_photo' => 'required'
         ]);
 
         if($validator->fails()){
@@ -107,9 +103,10 @@ class ProductCategoriesController extends AdminController
 
         $CategoryName = Input::get('category_name');
         $CategoryDescription = Input::get('category_description');
-        $FileUpload = $request->file('category_photo');
-        $ProductCategoryImage = Image::make($FileUpload)->resize(300,204)->stream();
-        $File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], $ProductCategoryImage->__toString());
+        $FileUpload = Input::get('category_photo');
+
+        //$ProductCategoryImage = Image::make($FileUpload)->resize(300,204)->stream();
+        $File = \App\File::create(['file_name' => $FileUpload]);
         \App\ProductCategory::create(['name' => $CategoryName, 'description' => $CategoryDescription, 'file_id' => $File->id]);
 
 

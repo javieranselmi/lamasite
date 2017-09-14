@@ -53,8 +53,8 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="category_photo"> Foto Categoria </label>
                         <div class="col-sm-9">
-                            <img width="100px" src="{{ Storage::url($product_category->file->file_name) }}" /> <br/><br/>
-                            <input type="file" id="category_photo" name="category_photo" />
+                            <img width="100px" src="{{ $product_category->file->file_name }}" /> <br/><br/>
+                            <input type="text" id="category_photo" name="category_photo" value="{{ $product_category->file->file_name }}"/>
                         </div>
                     </div>
 
@@ -81,18 +81,5 @@
 
     <script type="text/javascript">
         autosize($('textarea[class*=autosize]'));
-
-        $('#category_photo').ace_file_input({
-            no_file:'Sin Archivo ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'gif|png|jpg|jpeg'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        });
     </script>
 @endsection

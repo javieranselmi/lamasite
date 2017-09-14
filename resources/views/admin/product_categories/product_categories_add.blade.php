@@ -51,9 +51,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="category_photo"> Foto Categoria </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="category_photo">URL Foto Categoria </label>
                         <div class="col-sm-9">
-                            <input type="file" id="category_photo" name="category_photo" required />
+                            <input type="text" id="category_photo" name="category_photo" required />
                         </div>
                     </div>
 
@@ -84,19 +84,6 @@
 
     <script type="text/javascript">
         autosize($('textarea[class*=autosize]'));
-
-        $('#category_photo').ace_file_input({
-            no_file:'Sin Archivo ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'gif|png|jpg|jpeg'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        });
 
         $(document).ready(function(){
             @if (isset($message) && isset($status))
