@@ -53,7 +53,7 @@ class CoursesController extends AdminController
             'course_name' => 'required',
             'course_description' => 'required',
             'course_featured' => 'boolean',
-            'course_photo' => 'required|image',
+            'course_photo' => 'required',
             'course_finish_date' => 'required|date'
         ]);
 
@@ -63,9 +63,9 @@ class CoursesController extends AdminController
 
         $CourseName = Input::get('course_name');
         $CourseDescription = Input::get('course_description');
-        $FileUpload = $request->file('course_photo');
+        $FileUpload = Input::get('course_photo');
 
-        $File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], File::get($FileUpload));
+        $File = \App\File::create(['file_name' => $FileUpload]);
         $Course = \App\Course::create(['name' => $CourseName, 'description' => $CourseDescription, 'file_id' => $File->id, 'finish_date' => Input::get('finish_date')]);
 
         $CourseStages = Input::get('course_stages_ids');
@@ -104,7 +104,7 @@ class CoursesController extends AdminController
             'course_name' => 'required',
             'course_description' => 'required',
             'course_featured' => 'boolean',
-            'course_photo' => 'sometimes|required|image',
+            'course_photo' => 'sometimes|required',
             'course_finish_date' => 'required|date'
         ]);
 
@@ -115,13 +115,12 @@ class CoursesController extends AdminController
         $CourseName = Input::get('course_name');
         $CourseDescription = Input::get('course_description');
         $FinishDate = Input::get('course_finish_date');
-        $FileUpload = $request->file('course_photo');
+        $FileUpload = Input::get('course_photo');
 
         if($FileUpload != null){
-            $File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], File::get($FileUpload));
-            $Course->file->delete();
+            $File = \App\File::create(['file_name' => $FileUpload] );
             $Course->file()->associate($File);
-
+            $Course->file->delete();
         }
 
         $Course->name = $CourseName;

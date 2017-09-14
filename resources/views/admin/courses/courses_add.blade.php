@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="course_photo"> Foto Curso </label>
                         <div class="col-sm-9">
-                            <input type="file" id="course_photo" name="course_photo" required />
+                            <input type="text" name="course_photo" id="course_photo" placeholder="Url del sitio" class="col-xs-10 col-sm-5" required/>
                         </div>
                     </div>
 
@@ -135,19 +135,6 @@
 
     <script type="text/javascript">
         autosize($('textarea[class*=autosize]'));
-
-        $('#course_photo').ace_file_input({
-            no_file:'Sin Archivo ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'gif|png|jpg|jpeg'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        });
 
         if(!ace.vars['touch']) {
             $('.chosen-select').chosen({allow_single_deselect: true});
