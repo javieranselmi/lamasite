@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
-                {!! Form::open(['route' => 'admin_course_stages_add_post', 'class' => 'form-horizontal', 'role' => 'form', 'files' => true]) !!}
+                {!! Form::open(['route' => 'admin_course_stages_add_post', 'class' => 'form-horizontal', 'onsubmit' => 'return submitCourseStage()', 'role' => 'form', 'files' => true]) !!}
                     @if (isset($failed) || isset($iframe))
                         <div class="alert alert-danger" id="errors" style="{{ isset($iframe) ? 'display:none;' : '' }}">
                             Hubo errores en la creacion. Por favor intente nuevamente.
@@ -72,7 +72,7 @@
                                 <select class="chosen-select form-control" id="course_stage_course_id" name="course_stage_course_id" data-placeholder="Elegir Curso..." required>
                                     <option value="-1"></option>
                                     @foreach($courses as $course)
-                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                       <option value="{{ $course->id }}">{{ $course->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -109,16 +109,16 @@
 
 
                     <div class="form-group" id="form-video" hidden>
-                        <label class="col-sm-3 control-label no-padding-right" for="course_stage_video"> Video </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="course_stage_video"> Video Url</label>
                         <div class="col-sm-9">
-                            <input type="file" id="course_stage_video" name="course_stage_video" />
+                            <input type="text" id="course_stage_video" class="col-md-12" name="course_stage_video" />
                         </div>
                     </div>
 
                     <div class="form-group" id="form-ppt" hidden>
                         <label class="col-sm-3 control-label no-padding-right" for="course_stage_video"> Presentacion </label>
                         <div class="col-sm-9">
-                            <input type="file" id="course_stage_ppt" name="course_stage_ppt" />
+                            <input type="text" id="course_stage_ppt" class="col-md-12" name="course_stage_ppt" />
                         </div>
                     </div>
 
@@ -128,7 +128,7 @@
                             <div class="col-sm-9">
                                 <input type="number" id="course_stage_video_position" name="course_stage_video_position[]" placeholder="Posicion Video en Segundos" class="col-xs-10 col-sm-5" />
                                 <div class="col-sm-3">
-                                    <input type="file" name="course_stage_slides[]" />
+                                    <input type="text" name="course_stage_slides[]" />
                                 </div>
                                 &nbsp;
                                 <button type="button" data-toggle="tooltip" title="Agregar Cambio" id="add_ppt_change" class="btn btn-sm btn-success"><i class="icon-only ace-icon ace-icon fa fa-plus bigger-110"></i></button>
@@ -186,48 +186,6 @@
 
     <script type="text/javascript">
         autosize($('textarea[class*=autosize]'));
-
-        $('#course_stage_video').ace_file_input({
-            no_file:'Sin Archivo ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'mp4|mpg|avi'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        });
-
-        $('#course_stage_ppt').ace_file_input({
-            no_file:'Sin Archivo ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'pdf',
-            blacklist:'ppt'
-            //onchange:''
-            //
-        });
-
-        var slidesUploadParameters = {
-            no_file:'Elegir Slide ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'jpg|png'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        };
-
-        $("[name='course_stage_slides[]']").ace_file_input(slidesUploadParameters);
-
 
         if(!ace.vars['touch']) {
             $('.chosen-select').chosen({allow_single_deselect: true});
@@ -304,6 +262,34 @@
             });
         }
 
+        function submitCourseStage(){
+            var stageType = $('#course_stage_type').children('option:selected').val();
+            if(stageType == 'vid_ppt'){
+                var previousVal = -1;
+                var checked = true;
+                $("[name='course_stage_video_position[]']").each(function(){
+                    if(previousVal == -1) {
+                        previousVal = parseInt($(this).val());
+                        return true;
+                    }
+
+                    if(parseInt($(this).val()) < previousVal){
+                        checked = false;
+                        return false;
+                    }
+                    previousVal = parseInt($(this).val());
+                });
+                if(!checked){
+                    alert('Las posiciones del video deben de ser ingresadas de menor a mayor.');
+                    return false;
+                }
+            }else if(stageType == 'html'){
+                var html_content = $('#course_stage_html').html();
+                $('input[name=course_stage_html]').val(html_content);
+                return true;
+            }
+        };
+
         $(document).ready(function(){
 
             @if (isset($message) && isset($status))
@@ -319,7 +305,8 @@
 
             @if(isset($iframe))
                 $('form').submit(function(){
-                    $(this).ajaxSubmit({
+                //TODO: Fix this. On first submit, HTML is empty and blows up.
+                $(this).ajaxSubmit({
                        dataType: 'json',
                        success: function(data){
                             if(data.status == 'success'){
@@ -345,9 +332,9 @@
                     <span class="positions">\
                         <label class="col-sm-3 control-label no-padding-right"></label>\
                         <div class="col-sm-9">\
-                                <input type="number" id="course_stage_video_position" name="course_stage_video_position[]" placeholder="Posicion Video en Segundos" class="col-xs-10 col-sm-5" required />\
+                                <input type="text" id="course_stage_video_position" name="course_stage_video_position[]" placeholder="Posicion Video en Segundos" class="col-xs-10 col-sm-5" required />\
                                 <div class="col-sm-3"> \
-                                    <input type="file" name="course_stage_slides[]" required /> \
+                                    <input type="text" name="course_stage_slides[]" required /> \
                                 </div>\
                                 &nbsp; \
                                 <button type="button" data-toggle="tooltip" title="Quitar Cambio" class="btn btn-sm btn-danger remove_ppt_change"><i class="icon-only ace-icon ace-icon fa fa-minus bigger-110"></i></button>\
@@ -357,7 +344,6 @@
                $('[data-toggle="tooltip"]').tooltip();
                $('.remove_ppt_change').unbind('click');
                $('.remove_ppt_change').click(quitarCambio);
-               $("[name='course_stage_slides[]']").ace_file_input(slidesUploadParameters);
             });
 
             $('#course_stage_html').ace_wysiwyg({
@@ -393,33 +379,6 @@
                         {name:'redo', className:'btn-grey'}
                     ]
             }).prev().addClass('wysiwyg-style2');
-
-            $('form').submit(function(){
-                var stageType = $('#course_stage_type').children('option:selected').val();
-                if(stageType == 'vid_ppt'){
-                    var previousVal = -1;
-                    var checked = true;
-                    $("[name='course_stage_video_position[]']").each(function(){
-                        if(previousVal == -1) {
-                            previousVal = parseInt($(this).val());
-                            return true;
-                        }
-
-                        if(parseInt($(this).val()) < previousVal){
-                            checked = false;
-                            return false;
-                        }
-                        previousVal = parseInt($(this).val());
-                    });
-                    if(!checked){
-                        alert('Las posiciones del video deben de ser ingresadas de menor a mayor.');
-                        return false;
-                    }
-                }else if(stageType == 'html'){
-                    var html_content = $('#course_stage_html').html();
-                    $('input[name=course_stage_html]').val(html_content);
-                }
-            });
         });
     </script>
 @endsection

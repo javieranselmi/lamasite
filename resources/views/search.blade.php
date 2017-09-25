@@ -45,7 +45,7 @@
                                             {{--<small class="text-muted">{{ $course->created_at }}.</small>--}}
                                         </div>
                                         <div class="col-12 col-sm-auto">
-                                            <img class="img-fluid" src="{{ Storage::url($course->file->file_name) }}" style="max-width: 150px;"/>
+                                            <img class="img-fluid" src="{{ $course->image_url }}" style="max-width: 150px;"/>
                                         </div>
                                     </div>
                                 </div>

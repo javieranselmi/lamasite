@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <a href="{{ !is_null($featured_course) ? route('course', $featured_course) : "#" }}">
-                                    <img src="{{ !is_null($featured_course) ? Storage::url($featured_course->file->file_name) : "http://placehold.it/150x150" }}"
+                                    <img src="{{ !is_null($featured_course) ? $featured_course->image_url : "http://placehold.it/150x150" }}"
                                          width="125"/>
                                 </a>
                             </div>

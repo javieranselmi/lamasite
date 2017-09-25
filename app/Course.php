@@ -18,7 +18,7 @@ class Course extends Content
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'file_id', 'finish_date'];
+    protected $fillable = ['name', 'description', 'file_id', 'finish_date', 'image_url'];
 
     protected $dates = ['finish_date'];
 
@@ -64,7 +64,6 @@ class Course extends Content
     }
 
     public function delete(){
-        $this->file->delete();
-        parent::delete();
+        try {  parent::delete(); } catch (\Exception $e) {\Log::info($e->getMessage(),['stak' => $e->getTraceAsString()]);};
     }
 }

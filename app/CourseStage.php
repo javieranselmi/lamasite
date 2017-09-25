@@ -18,7 +18,7 @@ class CourseStage extends BaseModel
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'duration_in_minutes', 'type', 'html', 'json_vid_ppt', 'ppt_id', 'video_id', 'course_id'];
+    protected $fillable = ['name', 'description', 'duration_in_minutes', 'type', 'html', 'json_vid_ppt', 'ppt_id', 'video_id', 'course_id','ppt_url','video_url'];
 
     // Relationships
     public function ppt(){

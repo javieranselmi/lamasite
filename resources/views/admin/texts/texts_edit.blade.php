@@ -50,7 +50,7 @@
                         <input type="hidden" name="text_content" />
                         <label class="col-sm-3 control-label no-padding-right" for="text_name"> HTML </label>
                         <div class="col-sm-9">
-                            <div class="wysiwyg-editor" id="text_content">{!! $text->content !!}</div>
+                            <div class="wysiwyg-editor" id="text_content">{!! $text->content !!added}</div>
                         </div>
                     </div>
 

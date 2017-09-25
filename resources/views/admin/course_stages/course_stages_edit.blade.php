@@ -109,22 +109,22 @@
 
 
                     <div class="form-group" id="form-video" {{ $course_stage->type == 'vid_ppt' ? '' : 'hidden' }}>
-                        <label class="col-sm-3 control-label no-padding-right" for="course_stage_video"> Video </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="course_stage_video"> Url del Video </label>
                         <div class="col-sm-9">
-                            @if(!is_null($course_stage->video))
+                            @if(!is_null($course_stage->video_url))
                                 <a class="fancybox" href="#show_video">Ver Video</a>
                             @endif
-                            <input type="file" id="course_stage_video" name="course_stage_video" />
+                            <input type="text" id="course_stage_video" name="course_stage_video" value="{{ $course_stage->video_url }}"/>
                         </div>
                     </div>
 
                     <div class="form-group" id="form-ppt" {{ $course_stage->type == 'ppt' ? '' : 'hidden' }}>
-                        <label class="col-sm-3 control-label no-padding-right" for="course_stage_video"> Presentacion </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="course_stage_video"> URL de la presentacion </label>
                         <div class="col-sm-9">
-                            @if(!is_null($course_stage->ppt))
+                            @if(!is_null($course_stage->ppt_url))
                                 <a class="fancybox" href="#show_ppt">Ver Presentacion</a>
                             @endif
-                            <input type="file" id="course_stage_ppt" name="course_stage_ppt" />
+                            <input type="text" id="course_stage_ppt" name="course_stage_ppt" />
                         </div>
                     </div>
 
@@ -136,7 +136,7 @@
                                 <div class="col-sm-9">
                                     <input type="number" id="course_stage_video_position" name="course_stage_video_position[]" placeholder="Posicion Video en Segundos" class="col-xs-10 col-sm-5" {{ $course_stage->type == 'vid_ppt' ? 'required' : '' }} />
                                     <div class="col-sm-3">
-                                        <input type="file" class="ace_file" name="course_stage_slides[]" {{ $course_stage->type == 'vid_ppt' ? 'required' : '' }} />
+                                        <input type="text" name="course_stage_slides[]" {{ $course_stage->type == 'vid_ppt' ? 'required' : '' }}/>
                                     </div>
                                     <button type="button" data-toggle="tooltip" title="Agregar Cambio" id="add_ppt_change" class="btn btn-sm btn-success"><i class="icon-only ace-icon ace-icon fa fa-plus bigger-110"></i></button>
                                 </div>
@@ -149,7 +149,7 @@
                                     <input type="number" id="course_stage_video_position" name="course_stage_video_position[]" placeholder="Posicion Video en Segundos" class="col-xs-10 col-sm-5" value="{{ $slideJson->video_position }}" required/>
                                     <div class="col-sm-3">
                                         <a class="fancybox" href="{{ $slideJson->slide }}">Ver Slide</a>
-                                        <input type="file" class="ace_file" name="course_stage_slides_{{ $slideJson->index }}" />
+                                        <input type="text" name="course_stage_slides_{{ $slideJson->index }}" value="{{ $slideJson->slide }}"/>
                                     </div>
                                     @if($slideJson->index == 0)
                                         <button type="button" data-toggle="tooltip" title="Agregar Cambio" id="add_ppt_change" class="btn btn-sm btn-success"><i class="icon-only ace-icon ace-icon fa fa-plus bigger-110"></i></button>
@@ -196,9 +196,9 @@
 
     <!-- fancybox -->
     <div id="show_video" style="display: none;" align="center">
-        @if(!is_null($course_stage->video))
+        @if(!is_null($course_stage->video_url))
             <video id="my-video" class="video-js" controls preload="auto" data-setup="{}">
-                <source src="{{ Storage::url($course_stage->video->file_name) }}" type='video/mp4'>
+                <source src="{{ $course_stage->video_url }}" type='video/mp4'>
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a web browser that
                     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -209,7 +209,7 @@
 
     <div id="show_ppt" style="display: none;" align="center">
         @if(!is_null($course_stage->ppt))
-            <iframe src="https://docs.google.com/viewer?url={{Storage::url($course_stage->ppt->file_name)}}&embedded=true" style="width:680px; height:860px;" frameborder="0"></iframe>
+            <iframe src="https://docs.google.com/viewer?url={{ $course_stage->ppt_url }}&embedded=true" style="width:680px; height:860px;" frameborder="0"></iframe>
         @endif
     </div>
 
@@ -236,48 +236,6 @@
 
     <script type="text/javascript">
         autosize($('textarea[class*=autosize]'));
-
-        $('#course_stage_video').ace_file_input({
-            no_file:'Sin Archivo ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'mp4|mpg|avi'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        });
-
-        $('#course_stage_ppt').ace_file_input({
-            no_file:'Sin Archivo ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'ppt|pdf'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        });
-
-        var slidesUploadParameters = {
-            no_file:'Elegir Slide ...',
-            btn_choose:'Elegir',
-            btn_change:'Cambiar',
-            droppable:true,
-            onchange:null,
-            thumbnail:true,
-            whitelist:'jpg|png'
-            //blacklist:'exe|php'
-            //onchange:''
-            //
-        };
-
-        $(".ace_file").ace_file_input(slidesUploadParameters);
-
 
         if(!ace.vars['touch']) {
             $('.chosen-select').chosen({allow_single_deselect: true});
@@ -397,7 +355,7 @@
                         <div class="col-sm-9">\
                                 <input type="number" id="course_stage_video_position" name="course_stage_video_position[]" placeholder="Posicion Video en Segundos" class="col-xs-10 col-sm-5" required />\
                                 <div class="col-sm-3"> \
-                                    <input type="file" class="ace_file" name="course_stage_slides[]" required /> \
+                                    <input type="text" class="ace_file" name="course_stage_slides[]" required /> \
                                 </div>\
                                 &nbsp; \
                                 <button type="button" data-toggle="tooltip" title="Quitar Cambio" class="btn btn-sm btn-danger remove_ppt_change"><i class="icon-only ace-icon ace-icon fa fa-minus bigger-110"></i></button>\
@@ -407,7 +365,6 @@
                $('[data-toggle="tooltip"]').tooltip();
                $('.remove_ppt_change').unbind('click');
                $('.remove_ppt_change').click(quitarCambio);
-               $(".ace_file").ace_file_input(slidesUploadParameters);
             });
 
             $('#course_stage_html').ace_wysiwyg({

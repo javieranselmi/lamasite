@@ -48,12 +48,12 @@ class CoursesController extends AdminController
         return view('admin.courses.courses_add', $ViewParameters);
     }
 
-    public function create_course(Request $request){
+    public function create_course(Request $request) {
         $validator = Validator::make($request->all(), [
             'course_name' => 'required',
             'course_description' => 'required',
             'course_featured' => 'boolean',
-            'course_photo' => 'required|image',
+            'course_photo' => 'required',
             'course_finish_date' => 'required|date'
         ]);
 
@@ -63,11 +63,9 @@ class CoursesController extends AdminController
 
         $CourseName = Input::get('course_name');
         $CourseDescription = Input::get('course_description');
-        $FileUpload = $request->file('course_photo');
+        $imageUrl = Input::get('course_photo');
 
-        $File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], File::get($FileUpload));
-        $Course = \App\Course::create(['name' => $CourseName, 'description' => $CourseDescription, 'file_id' => $File->id, 'finish_date' => Input::get('finish_date')]);
-
+        $Course = \App\Course::create(['name' => $CourseName, 'description' => $CourseDescription, 'file_id' => null, 'finish_date' => Input::get('finish_date'), 'image_url' => $imageUrl]);
         $CourseStages = Input::get('course_stages_ids');
 
         if(is_array($CourseStages)){
@@ -104,7 +102,7 @@ class CoursesController extends AdminController
             'course_name' => 'required',
             'course_description' => 'required',
             'course_featured' => 'boolean',
-            'course_photo' => 'sometimes|required|image',
+            'course_photo' => 'sometimes|required',
             'course_finish_date' => 'required|date'
         ]);
 
@@ -115,18 +113,12 @@ class CoursesController extends AdminController
         $CourseName = Input::get('course_name');
         $CourseDescription = Input::get('course_description');
         $FinishDate = Input::get('course_finish_date');
-        $FileUpload = $request->file('course_photo');
-
-        if($FileUpload != null){
-            $File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], File::get($FileUpload));
-            $Course->file->delete();
-            $Course->file()->associate($File);
-
-        }
+        $imageUrl = Input::get('course_photo');
 
         $Course->name = $CourseName;
         $Course->description = $CourseDescription;
         $Course->finish_date = $FinishDate;
+        $Course->image_url = $imageUrl;
         $Course->save();
 
         return redirect()->route('admin_courses', ['status' => 'success','message' => 'Curso Editado']);
