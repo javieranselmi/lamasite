@@ -77,9 +77,6 @@
                                 </td>
                                 <td>
                                     <div class="action-buttons">
-                                        <a class="blue" href="#">
-                                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
-                                        </a>
 
                                         <a class="green" href="{{ route("users.edit", ["post_id" => $user->id]) }}">
                                             <i class="ace-icon fa fa-pencil bigger-130"></i>

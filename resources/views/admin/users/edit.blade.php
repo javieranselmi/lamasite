@@ -59,7 +59,7 @@
                     <label class="col-sm-3 control-label no-padding-right" for="content"> Contraseña </label>
                     <div class="col-sm-9">
                         <input type="password" name="password" id="password" placeholder="Contraseña"
-                               value="{{ $user->password }}" class="col-xs-10 col-sm-5" required/>
+                               value="{{ $user->password }}" class="col-xs-10 col-sm-5"/>
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@
                         Contraseña </label>
                     <div class="col-sm-9">
                         <input type="password" name="password_confirmation" id="password_confirmation"
-                               placeholder="Repetir contraseña" value="{{ $user->password }}"  class="col-xs-10 col-sm-5" required/>
+                               placeholder="Repetir contraseña" value="{{ $user->password }}"  class="col-xs-10 col-sm-5"/>
                     </div>
                 </div>
 

@@ -92,6 +92,7 @@ class UserController extends AdminController
     public function edit(User $user)
     {
         $roles = Role::all();
+        $user->password = '';
         return view ('admin.users.edit',['user' => $user, 'roles' => $roles]);
         //
     }
@@ -111,12 +112,12 @@ class UserController extends AdminController
                                             Rule::unique('users')->ignore($user->id)
                                         ],
                 'roles'                 => 'required|exists:roles,id',
-                'password'              => 'required|confirmed|min:4'
+                'password'              => 'sometimes|confirmed|min:4'
             ]
         );
         $email          = $request['email'];
         $name           = $request['name'];
-        if ($request['password'] != $user->password) {
+        if (!empty($request['password']) && $request['password'] != $user->password) {
             $password       = Hash::make($request['password']);
             $user->password = $password;
         }
