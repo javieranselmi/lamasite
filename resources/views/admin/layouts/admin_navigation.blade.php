@@ -33,7 +33,7 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="/logout">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
