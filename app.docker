@@ -3,6 +3,10 @@ FROM php:7-fpm
 RUN apt-get update && apt-get install -y libmcrypt-dev mysql-client \
     && docker-php-ext-install mcrypt pdo_mysql
 
-WORKDIR /var/www
+RUN apt-get install -y libpng-dev
+RUN docker-php-ext-install gd
 
-RUN chmod -R 777 app/storage/
+WORKDIR /var/www
+COPY . .
+
+RUN chmod -R 777 storage/
