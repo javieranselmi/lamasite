@@ -7,6 +7,11 @@ RUN apt-get install -y libpng-dev
 RUN docker-php-ext-install gd
 
 WORKDIR /var/www
-COPY . .
 
-RUN chmod -R 777 storage/
+RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
+RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN apt-get update
+RUN apt-get install -y zip unzip git
+COPY . .
+RUN composer install
+RUN chmod -R 777 .
