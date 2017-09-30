@@ -48,7 +48,11 @@ class CoursesController extends AdminController
         return view('admin.courses.courses_add', $ViewParameters);
     }
 
+<<<<<<< HEAD
     public function create_course(Request $request){
+=======
+    public function create_course(Request $request) {
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         $validator = Validator::make($request->all(), [
             'course_name' => 'required',
             'course_description' => 'required',
@@ -63,11 +67,17 @@ class CoursesController extends AdminController
 
         $CourseName = Input::get('course_name');
         $CourseDescription = Input::get('course_description');
+<<<<<<< HEAD
         $FileUpload = Input::get('course_photo');
 
         $File = \App\File::create(['file_name' => $FileUpload]);
         $Course = \App\Course::create(['name' => $CourseName, 'description' => $CourseDescription, 'file_id' => $File->id, 'finish_date' => Input::get('finish_date')]);
 
+=======
+        $imageUrl = Input::get('course_photo');
+
+        $Course = \App\Course::create(['name' => $CourseName, 'description' => $CourseDescription, 'file_id' => null, 'finish_date' => Input::get('finish_date'), 'image_url' => $imageUrl]);
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         $CourseStages = Input::get('course_stages_ids');
 
         if(is_array($CourseStages)){
@@ -115,6 +125,7 @@ class CoursesController extends AdminController
         $CourseName = Input::get('course_name');
         $CourseDescription = Input::get('course_description');
         $FinishDate = Input::get('course_finish_date');
+<<<<<<< HEAD
         $FileUpload = Input::get('course_photo');
 
         if($FileUpload != null){
@@ -122,10 +133,17 @@ class CoursesController extends AdminController
             $Course->file()->associate($File);
             $Course->file->delete();
         }
+=======
+        $imageUrl = Input::get('course_photo');
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
 
         $Course->name = $CourseName;
         $Course->description = $CourseDescription;
         $Course->finish_date = $FinishDate;
+<<<<<<< HEAD
+=======
+        $Course->image_url = $imageUrl;
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         $Course->save();
 
         return redirect()->route('admin_courses', ['status' => 'success','message' => 'Curso Editado']);

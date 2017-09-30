@@ -30,7 +30,15 @@ class CreateCourseStagesTable extends Migration
             $table->foreign('ppt_id')->references('id')->on('files');
 
             $table->integer('course_id')->unsigned();
+<<<<<<< HEAD
             $table->foreign('course_id')->references('id')->on('courses');
+=======
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+
+            $table->string('video_url');
+            $table->string('ppt_url');
+
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             $table->timestamps();
         });
     }

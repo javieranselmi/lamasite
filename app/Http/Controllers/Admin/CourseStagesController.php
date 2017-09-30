@@ -57,23 +57,39 @@ class CourseStagesController extends AdminController
             $ViewParameters['course_id'] = Input::get('course_id');
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         return view('admin.course_stages.course_stages_add', $ViewParameters);
     }
 
     public function create_course_stage(Request $request){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         $validator = Validator::make($request->all(), [
             'course_stage_name' => 'required',
             'course_stage_description' => 'required',
             'course_stage_type' => 'required|in:html,ppt,vid_ppt,questionnaire',
             'course_stage_duration_in_minutes' => 'required|integer',
+<<<<<<< HEAD
             'course_stage_video' => 'required_if:course_stage_type,vid_ppt|mimes:mp4,mpeg,mpg,avi',
             'course_stage_ppt' => 'required_if:course_stage_type,ppt|mimes:ppt,pdf',
             'course_stage_html' => 'required_if:course_stage_type,html|string',
             //'course_stage_course_id' => 'required|exists:courses,id',
             'course_stage_video_position.*' => 'required_if:course_stage_type,vid_ppt|numeric',
             'course_stage_slides.*' => 'required_if:course_stage_type,vid_ppt|mimes:jpg,jpeg,png',
+=======
+            'course_stage_video' => 'required_if:course_stage_type,vid_ppt',
+            'course_stage_ppt' => 'required_if:course_stage_type,ppt',
+            'course_stage_html' => 'required_if:course_stage_type,html|string',
+            //'course_stage_course_id' => 'required|exists:courses,id',
+            'course_stage_video_position.*' => 'required_if:course_stage_type,vid_ppt|numeric',
+            'course_stage_slides.*' => 'required_if:course_stage_type,vid_ppt',
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             'course_stage_questions.*' => 'required_if:course_stage_type,questionnaire|exists:questions,id'
         ]);
 
@@ -97,6 +113,7 @@ class CourseStagesController extends AdminController
 
         if(in_array($CourseStageType, ["vid_ppt"])){
 
+<<<<<<< HEAD
             $FileUploadVideo = $request->file('course_stage_video');
             Storage::disk(env("APP_STORAGE"))->put($FileUploadVideo->getFilename().'.'.$FileUploadVideo->getClientOriginalExtension(),  File::get($FileUploadVideo));
             $FileVideo = \App\File::create(['file_name_original' => $FileUploadVideo->getClientOriginalName(), 'file_name' => $FileUploadVideo->getFilename().'.'.$FileUploadVideo->getClientOriginalExtension(), 'mime' => $FileUploadVideo->getMimeType()]);
@@ -110,6 +127,18 @@ class CourseStagesController extends AdminController
                 Storage::disk(env("APP_STORAGE"))->put($Slide->getFilename().'.'.$Slide->getClientOriginalExtension(),  File::get($Slide));
                 $SlideFiles = \App\File::create(['file_name_original' => $Slide->getClientOriginalName(), 'file_name' => $Slide->getFilename().'.'.$Slide->getClientOriginalExtension(), 'mime' => $Slide->getMimeType()]);
                 $JSON[] = ['index' => $index, 'slide' => Storage::url($SlideFiles->file_name), 'video_position' => $VideoPositions[$index]];
+=======
+            $videoUrl = Input::get('course_stage_video');
+            $CourseStageModelParams['video_id'] = null;
+            $CourseStageModelParams['video_url'] = $videoUrl;
+
+            $SlideUrls = Input::get('course_stage_slides.*');
+            $VideoPositions = Input::get('course_stage_video_position.*');
+            $JSON = [];
+
+            foreach ($SlideUrls as $index => $Slide){
+                $JSON[] = ['index' => $index, 'slide' => $Slide, 'video_position' => $VideoPositions[$index]];
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             }
 
 
@@ -118,10 +147,16 @@ class CourseStagesController extends AdminController
         }
 
         if(in_array($CourseStageType, ["ppt"])){
+<<<<<<< HEAD
             $FileUploadPPT = $request->file('course_stage_ppt');
             Storage::disk(env("APP_STORAGE"))->put($FileUploadPPT->getFilename().'.'.$FileUploadPPT->getClientOriginalExtension(),  File::get($FileUploadPPT));
             $FilePPT = \App\File::create(['file_name_original' => $FileUploadPPT->getClientOriginalName(), 'file_name' => $FileUploadPPT->getFilename().'.'.$FileUploadPPT->getClientOriginalExtension(), 'mime' => $FileUploadPPT->getMimeType()]);
             $CourseStageModelParams['ppt_id'] = $FilePPT->id;
+=======
+            $pptUrl = Input::get('course_stage_ppt');
+            $CourseStageModelParams['ppt_id'] = null;
+            $CourseStageModelParams['ppt_url'] = $pptUrl;
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         }
 
         if($CourseStageType == 'html')
@@ -140,8 +175,13 @@ class CourseStagesController extends AdminController
             }
         }
 
+<<<<<<< HEAD
         if($JSON){
             return response()->json(['status' => 'success', 'message' => 'Etapa de Curso Creada', 'course_stage' => $CourseStage]);
+=======
+        if($request->ajax()) {
+            return response()->json(['status' => 'success', 'message' => "Etapa de curso creada", 'course_stage' => $CourseStage]);
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         }
 
         if(Input::get('new')){
@@ -180,12 +220,21 @@ class CourseStagesController extends AdminController
             'course_stage_description' => 'required',
             'course_stage_type' => 'required|in:html,ppt,vid_ppt,questionnaire',
             'course_stage_duration_in_minutes' => 'required|integer',
+<<<<<<< HEAD
             'course_stage_video' => 'sometimes|required_if:course_stage_type,vid_ppt|mimes:mp4,mpeg,mpg,avi',
             'course_stage_ppt' => 'sometimes|required_if:course_stage_type,ppt|mimes:ppt,pdf',
             'course_stage_html' => 'required_if:course_stage_type,html|string',
             //'course_stage_course_id' => 'required|exists:courses,id',
             'course_stage_video_position.*' => 'required_if:course_stage_type,vid_ppt|numeric',
             'course_stage_slides.*' => 'sometimes|required_if:course_stage_type,vid_ppt|mimes:jpg,jpeg,png',
+=======
+            'course_stage_video' => 'sometimes|required_if:course_stage_type,vid_ppt',
+            'course_stage_ppt' => 'sometimes|required_if:course_stage_type,ppt',
+            'course_stage_html' => 'required_if:course_stage_type,html|string',
+            //'course_stage_course_id' => 'required|exists:courses,id',
+            'course_stage_video_position.*' => 'required_if:course_stage_type,vid_ppt|numeric',
+            'course_stage_slides.*' => 'sometimes|required_if:course_stage_type,vid_ppt',
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             'course_stage_questions.*' => 'required_if:course_stage_type,questionnaire|exists:questions,id'
         ]);
 
@@ -208,12 +257,19 @@ class CourseStagesController extends AdminController
 
         if(in_array($CourseStageType, ["vid_ppt"])){
 
+<<<<<<< HEAD
             $FileUploadVideo = $request->file('course_stage_video');
             if($FileUploadVideo != null){
                 $FileVideo = \App\File::create(['file_name_original' => $FileUploadVideo->getClientOriginalName(), 'file_name' => $FileUploadVideo->getFilename().'.'.$FileUploadVideo->getClientOriginalExtension(), 'mime' => $FileUploadVideo->getMimeType()], File::get($FileUploadVideo));
                 if(!is_null($CourseStage->video))
                     $CourseStage->video->delete();
                 $CourseStageModelParams['video_id'] = $FileVideo->id;
+=======
+            $videoUrl = Input::get('course_stage_video');
+            if($videoUrl != null){
+                $CourseStageModelParams['video_id'] = null;
+                $CourseStageModelParams['video_url'] = $videoUrl;
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             }
 
             $VideoPositions = Input::get('course_stage_video_position.*');
@@ -223,10 +279,16 @@ class CourseStagesController extends AdminController
                 $JSON = json_decode($CourseStage->json_vid_ppt);
 
                 foreach ($VideoPositions as $index => $VideoPosition){
+<<<<<<< HEAD
                     $Slide = Input::file('course_stage_slides_'.$index);
                     if($Slide != null){
                         $SlideFiles = \App\File::create(['file_name_original' => $Slide->getClientOriginalName(), 'file_name' => $Slide->getFilename().'.'.$Slide->getClientOriginalExtension(), 'mime' => $Slide->getMimeType()], File::get($Slide));
                         $JSON[$index]->slide = Storage::url($SlideFiles->file_name);
+=======
+                    $Slide = Input::get('course_stage_slides_'.$index);
+                    if($Slide != null){
+                        $JSON[$index]->slide =$Slide;
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
                     }
                     $JSON[$index]->video_position = $VideoPosition;
                 }
@@ -237,12 +299,18 @@ class CourseStagesController extends AdminController
         }
 
         if(in_array($CourseStageType, ["ppt"])){
+<<<<<<< HEAD
             $FileUploadPPT = $request->file('course_stage_ppt');
             if($FileUploadPPT != null){
                 $FilePPT = \App\File::create(['file_name_original' => $FileUploadPPT->getClientOriginalName(), 'file_name' => $FileUploadPPT->getFilename().'.'.$FileUploadPPT->getClientOriginalExtension(), 'mime' => $FileUploadPPT->getMimeType()], File::get($FileUploadPPT));
                 if(!is_null($CourseStage->ppt))
                     $CourseStage->ppt->delete();
                 $CourseStageModelParams['ppt_id'] = $FilePPT->id;
+=======
+            $pptUrl = Input::get('course_stage_ppt');
+            if($pptUrl != null){
+                $CourseStageModelParams['ppt_url'] = $pptUrl;
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             }
 
         }
@@ -268,9 +336,17 @@ class CourseStagesController extends AdminController
 
         $CourseStage->update($CourseStageModelParams);
 
+<<<<<<< HEAD
         if($JSON){
             return response()->json(['status' => 'success', 'message' => 'Etapa de Curso editada', 'course_stage' => $CourseStage]);
         }
+=======
+
+        if($request->ajax()) {
+            return response()->json(['status' => 'success', 'message' => "Etapa de curso editada", 'course_stage' => $CourseStage]);
+        }
+
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         return redirect()->route('admin_course_stages', ['status' => 'success', 'message' => 'Etapa de Curso Editada']);
     }
 

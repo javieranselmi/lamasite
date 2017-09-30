@@ -19,8 +19,14 @@ class CreateCoursesTable extends Migration
             $table->string('description');
             // Constraints declaration
 
+<<<<<<< HEAD
             $table->integer('file_id')->unsigned();
             $table->foreign('file_id')->references('id')->on('files');
+=======
+            $table->integer('file_id')->unsigned()->nullable();
+            $table->foreign('file_id')->references('id')->on('files');
+            $table->string('image_url');
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             $table->timestamps();
         });
     }

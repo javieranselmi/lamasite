@@ -97,7 +97,11 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="product_photo"> Foto Producto </label>
                         <div class="col-sm-9">
+<<<<<<< HEAD
                             <input type="text" id="product_photo" name="product_photo" required />
+=======
+                            <input type="file" id="product_photo" name="product_photo" required />
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
                         </div>
                     </div>
 
@@ -126,6 +130,22 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
+=======
+                    <div class="form-group product_related_files" id="form-files">
+                        <span class="files">
+                            <label class="col-sm-3 control-label no-padding-right"> Archivos Relacionados </label>
+                            <div class="col-sm-9">
+                                <div class="col-sm-3">
+                                    <input type="file" name="product_related_files[]" />
+                                </div>
+                                &nbsp;
+                                <button type="button" data-toggle="tooltip" title="Agregar Archivo" id="add_ppt_change" class="btn btn-sm btn-success"><i class="icon-only ace-icon ace-icon fa fa-plus bigger-110"></i></button>
+                            </div>
+                        </span>
+                    </div>
+
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
                     <div class="clearfix form-actions">
                         <div class="col-md-offset-3 col-md-9">
                             <button class="btn btn-info" type="submit">
@@ -161,6 +181,22 @@
     <script type="text/javascript">
         autosize($('textarea[class*=autosize]'));
 
+<<<<<<< HEAD
+=======
+        $('#product_photo').ace_file_input({
+            no_file:'Sin Archivo ...',
+            btn_choose:'Elegir',
+            btn_change:'Cambiar',
+            droppable:true,
+            onchange:null,
+            thumbnail:true,
+            whitelist:'gif|png|jpg|jpeg'
+            //blacklist:'exe|php'
+            //onchange:''
+            //
+        });
+
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         if(!ace.vars['touch']) {
             $('.chosen-select').chosen({allow_single_deselect: true});
             //resize the chosen on window resize
@@ -196,6 +232,45 @@
                 $(form).submit();
             });
 
+<<<<<<< HEAD
+=======
+            var relatedFileUploadParameters = {
+                no_file:'Elegir Archivo ...',
+                btn_choose:'Elegir',
+                btn_change:'Cambiar',
+                droppable:true,
+                onchange:null,
+                thumbnail:true,
+                //whitelist:'jpg|png'
+                blacklist:'exe|php|zip|rar'
+                //onchange:''
+                //
+            };
+
+            $("[name='product_related_files[]']").ace_file_input(relatedFileUploadParameters);
+
+            var quitarArchivo = function(){
+                $(this).parentsUntil('.files').parent().remove();
+            };
+
+            $('#add_ppt_change').click(function() {
+                var toAppend='<span class="files"> \
+                        <label class="col-sm-3 control-label no-padding-right"></label> \
+                            <div class="col-sm-9"> \
+                                <div class="col-sm-3"> \
+                                    <input type="file" name="product_related_files[]" /> \
+                                </div> \
+                                &nbsp; \
+                                <button type="button" data-toggle="tooltip" title="Quitar Archivo" class="btn btn-sm btn-danger remove_related_file"><i class="icon-only ace-icon ace-icon fa fa-minus bigger-110"></i></button> \
+                            </div> \
+                    </span>';
+                $('.product_related_files').append(toAppend);
+                $('[data-toggle="tooltip"]').tooltip();
+                $('.remove_related_file').unbind('click');
+                $('.remove_related_file').click(quitarArchivo);
+                $("[name='product_related_files[]']").ace_file_input(relatedFileUploadParameters);
+            });
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             CKEDITOR.replace( 'product_components', {language: 'es'});
 
             $('#product_category_id').change(function(){

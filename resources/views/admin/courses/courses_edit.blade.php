@@ -70,10 +70,17 @@
                     </div>
 
                     <div class="form-group">
+<<<<<<< HEAD
                         <label class="col-sm-3 control-label no-padding-right" for="course_photo"> Foto Curso </label>
                         <div class="col-sm-9">
                             <img width="100px" src="{{ $course->file->file_name }}" /> <br/><br/>
                             <input type="text" name="course_photo" id="course_photo" placeholder="Url del sitio" class="col-xs-10 col-sm-5" value="{{ $course->file->file_name }}" required/>
+=======
+                        <label class="col-sm-3 control-label no-padding-right" for="course_photo"> URL de foto del curso </label>
+                        <div class="col-sm-9">
+                            <img width="100px" src="{{ $course->image_url }}" /> <br/><br/>
+                            <input type="text" id="course_photo" name="course_photo" class="col-xs-10 col-sm-5"  value="{{ $course->image_url }}" required />
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
                         </div>
                     </div>
 

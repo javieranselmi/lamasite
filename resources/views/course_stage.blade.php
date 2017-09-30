@@ -29,6 +29,7 @@
                 <p>{{ $course_stage->html }}</p>
             @elseif($course_stage->type == 'ppt')
                 <div class="col-12 text-center">
+<<<<<<< HEAD
                     <iframe src="https://docs.google.com/viewer?url={{ Storage::url($course_stage->ppt->file_name) }}&embedded=true" style="width:680px; height:860px;" frameborder="0"></iframe>
                 </div>
             @elseif($course_stage->type == 'vid_ppt')
@@ -36,6 +37,15 @@
                     @if(!is_null($course_stage->video))
                         <video id="course_stage_video" class="video-js" controls preload="auto" data-setup="{}" style="width: 565px; height: 435px;">
                             <source src="{{ Storage::url($course_stage->video->file_name) }}" type='video/mp4'>
+=======
+                    <iframe src="https://docs.google.com/viewer?url={{ $course_stage->ppt_url }}&embedded=true" style="width:680px; height:860px;" frameborder="0"></iframe>
+                </div>
+            @elseif($course_stage->type == 'vid_ppt')
+                <div class="col-md-6">
+                    @if(!is_null($course_stage->video_url))
+                        <video id="course_stage_video" class="video-js" controls preload="auto" data-setup="{}" style="width: 565px; height: 435px;">
+                            <source src="{{ $course_stage->video_url }}" type='video/mp4'>
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
                             <p class="vjs-no-js">
                                 To view this video please enable JavaScript, and consider upgrading to a web browser that
                                 <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>

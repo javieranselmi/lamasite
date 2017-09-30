@@ -57,7 +57,11 @@ class ProductsController extends AdminController
             'product_name' => 'required',
             'product_subtitle' => 'required',
             'product_description' => 'required',
+<<<<<<< HEAD
             'product_photo' => 'required',
+=======
+            'product_photo' => 'required|image',
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             'product_featured' => 'boolean',
             'product_category_id' => 'required|exists:product_categories,id',
             'product_components' => 'required',
@@ -88,6 +92,7 @@ class ProductsController extends AdminController
         $ProductName = Input::get('product_name');
         $ProductDescription = Input::get('product_description');
         $ProductFeatured = Input::get('product_featured', false);
+<<<<<<< HEAD
         $FileUpload = Input::get('product_photo');
         $ProductCategory = \App\ProductCategory::find(Input::get('product_category_id'));
         //$ProductImageThumb = Image::make($FileUpload)->resize(143,200)->stream();
@@ -95,6 +100,15 @@ class ProductsController extends AdminController
         
         //$ProductImage = Image::make($FileUpload)->resize(300,400)->stream();
         //$File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], $ProductImage->__toString());
+=======
+        $FileUpload = $request->file('product_photo');
+        $ProductCategory = \App\ProductCategory::find(Input::get('product_category_id'));
+        $ProductImageThumb = Image::make($FileUpload)->resize(143,200)->stream();
+        $FileThumb = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'_thumb.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], $ProductImageThumb->__toString());
+        
+        $ProductImage = Image::make($FileUpload)->resize(300,400)->stream();
+        $File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], $ProductImage->__toString());
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
 
         $ProductComponents = Input::get('product_components');
 
@@ -104,8 +118,13 @@ class ProductsController extends AdminController
             'description' => $ProductDescription,
             'product_category_id' => $ProductCategory->id,
             'product_subcategory_id' => !is_null($ProductSubcategory) ? $ProductSubcategory->id : null,
+<<<<<<< HEAD
             'thumb_id' => $FileUpload->id,
             'photo_id' => $FileUpload->id,
+=======
+            'thumb_id' => $FileThumb->id,
+            'photo_id' => $File->id,
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             'subtitle' => $request->product_subtitle,
             'components' => $ProductComponents
         ]);
@@ -120,10 +139,17 @@ class ProductsController extends AdminController
             }
         }
 
+<<<<<<< HEAD
         $RelatedFiles = Input::get('product_related_files');
         if(is_array($RelatedFiles)){
             foreach($RelatedFiles as $relatedFile){
                 $File = \App\File::create(['file_name' => $relatedFile ]);
+=======
+        $RelatedFiles = Input::file('product_related_files');
+        if(is_array($RelatedFiles)){
+            foreach($RelatedFiles as $relatedFile){
+                $File = \App\File::create(['file_name_original' => $relatedFile->getClientOriginalName(), 'file_name' => $relatedFile->getFilename().'.'.$relatedFile->getClientOriginalExtension(), 'mime' => $relatedFile->getMimeType()], File::get($relatedFile));
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
                 $Product->files()->attach($File);
                 $Product->save();
             }
@@ -157,7 +183,11 @@ class ProductsController extends AdminController
             'product_name' => 'required',
             'product_description' => 'required',
             'product_subtitle' => 'required',
+<<<<<<< HEAD
             'product_photo' => 'required',
+=======
+            'product_photo' => 'sometimes|required|image',
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             'product_featured' => 'boolean',
             'product_category_id' => 'required|exists:product_categories,id',
             'product_components' => 'required',
@@ -183,12 +213,17 @@ class ProductsController extends AdminController
 
         $ProductName = Input::get('product_name');
         $ProductDescription = Input::get('product_description');
+<<<<<<< HEAD
         $FileUpload = Input::get('product_photo');
+=======
+        $FileUpload = $request->file('product_photo');
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         $ProductCategory = \App\ProductCategory::find(Input::get('product_category_id'));
 
         $ProductFeatured = Input::get('product_featured', false);
 
         if($FileUpload != null){
+<<<<<<< HEAD
             //$ProductImageThumb = Image::make($FileUpload)->resize(143,200)->stream();
             //$FileThumb = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'_thumb.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], $ProductImageThumb->__toString());
 
@@ -196,6 +231,15 @@ class ProductsController extends AdminController
             $File = \App\File::create(['file_name' => $FileUpload]);
 
             $Product->thumb()->associate($File);
+=======
+            $ProductImageThumb = Image::make($FileUpload)->resize(143,200)->stream();
+            $FileThumb = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'_thumb.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], $ProductImageThumb->__toString());
+
+            $ProductImage = Image::make($FileUpload)->resize(300,400)->stream();
+            $File = \App\File::create(['file_name_original' => $FileUpload->getClientOriginalName(), 'file_name' => $FileUpload->getFilename().'.'.$FileUpload->getClientOriginalExtension(), 'mime' => $FileUpload->getMimeType()], $ProductImage->__toString());
+
+            $Product->thumb()->associate($FileThumb);
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
             $Product->photo()->associate($File);
 
         }
@@ -227,6 +271,26 @@ class ProductsController extends AdminController
             }
         }
 
+<<<<<<< HEAD
+=======
+        $CurrentRelatedFiles = Input::get('product_related_files_id');
+        if(count($CurrentRelatedFiles) > 0){
+            $FilesToRemove = $Product->files->diff(\App\Answer::whereIn('id', $CurrentRelatedFiles)->get());
+            foreach($FilesToRemove as $fileToRemove){
+                $Product->files()->detach($fileToRemove);
+                $fileToRemove->delete();
+            }
+        }
+
+        $RelatedFiles = Input::file('product_related_files');
+        if(!is_null($RelatedFiles)){
+            foreach($RelatedFiles as $relatedFile){
+                $File = \App\File::create(['file_name_original' => $relatedFile->getClientOriginalName(), 'file_name' => $relatedFile->getFilename().'.'.$relatedFile->getClientOriginalExtension(), 'mime' => $relatedFile->getMimeType()], File::get($relatedFile));
+                $Product->files()->attach($File);
+            }
+        }
+
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
         $Product->save();
         return redirect()->route('admin_products', ['status' => 'success','message' => 'Producto Editado']);
     }

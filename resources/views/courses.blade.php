@@ -86,7 +86,11 @@
                             </div>
                         </div>
                         <div class="col-7"
+<<<<<<< HEAD
                              style="background: url('{{ Storage::url($course->file->file_name) }}') center no-repeat; background-size: cover;">
+=======
+                             style="background: url('{{ $course->image_url }}') center no-repeat; background-size: cover;">
+>>>>>>> 455767302861fb413b9a75a2ff59ca1bcaabf87f
                             <a href="{{ route("course", $course->id) }}"><img class="img-fluid" id="img-curso"
                                                                               src="{{ asset('img/playbutton.png') }}"
                                                                               height="60" width="60"></a>
