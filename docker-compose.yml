@@ -16,15 +16,3 @@ services:
             dockerfile: app.docker
         volumes:
             - ./:/var/www
-        links:
-            - database
-        environment:
-            - "DB_PORT=3306"
-            - "DB_HOST=database"
-    database:
-        image: mysql:5.6
-        environment:
-            - "MYSQL_ROOT_PASSWORD=secret"
-            - "MYSQL_DATABASE=homestead"
-        ports:
-            - "3306:3306"

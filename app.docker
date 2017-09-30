@@ -3,6 +3,15 @@ FROM php:7-fpm
 RUN apt-get update && apt-get install -y libmcrypt-dev mysql-client \
     && docker-php-ext-install mcrypt pdo_mysql
 
+RUN apt-get install -y libpng-dev
+RUN docker-php-ext-install gd
+
 WORKDIR /var/www
 
-RUN chmod -R 777 app/storage/
+RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
+RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN apt-get update
+RUN apt-get install -y zip unzip git
+COPY . .
+RUN composer install
+RUN chmod -R 777 .
