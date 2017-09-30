@@ -1,5 +1,3 @@
-
-docker run --rm -v $(pwd):/app composer/composer install
-chmod 777 -R * #(en WORKDIR /var/www)
-docker-compose exec app php artisan migrate
-docker-compose exec app php artisan db:seed
+kill -USR2 1
+php artisan migrate
+php artisan db:seed
